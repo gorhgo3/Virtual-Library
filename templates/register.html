@@ -1,0 +1,19 @@
+{% extends 'header.html' %}
+{% block content %}
+
+
+<form class="mx-auto" action="{{url_for('register')}}" method="post">
+    {{ form.csrf_token }}
+    <div class="container">{{form.username.label}}</div>
+    <div class="container">{{form.username(size=20)}}</div>
+    <div class="container">{{form.email.label}}</div>
+    <div class="container">{{form.email(size=10)}}</div>
+    <div class="container">{{form.password.label}}</div>
+    <div class="container">{{form.password(size=10)}}</div>
+    <div class="container">{{form.confirm.label}}</div>
+    <div class="container">{{form.confirm(size=10)}}</div>
+    <button type="submit" class="select btn btn-primary btn-lg">Sign up</button>
+</form>
+
+
+{% endblock %}

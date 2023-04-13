@@ -1,0 +1,28 @@
+{%  extends 'header.html' %}
+{% block content %}
+
+{% if tag == 'wishlist' %}
+<form class="mx-auto" action="{{url_for('wishlist')}}" method="post">
+{% elif tag == 'to_read' %}
+<form class="mx-auto" action="{{url_for('to_read')}}" method="post">
+{% elif tag == 'read' %}
+<form class="mx-auto" action="{{url_for('add')}}" method="post">
+{% endif %}
+
+
+    {{ form.csrf_token }}
+    <div class="container">
+        {{form.title.label}}
+        {{form.title(size=20)}}
+    </div>
+    <div class="container">
+        {{form.ISBN.label}}
+        {{form.ISBN(size=20)}}
+    </div>
+
+    <button type="submit" class="select btn btn-primary btn-lg">add book</button>
+
+</form>
+
+
+{% endblock %}

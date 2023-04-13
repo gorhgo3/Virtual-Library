@@ -1,0 +1,23 @@
+{%  extends 'header.html' %}
+{% block content %}
+
+<form class="mx-auto" action="{{url_for('account_profile_update', id=current_user.id)}}" method="POST">
+    {{ form.csrf_token }}
+
+    Tell us about your story
+
+    <div class="container">{{form.email.label}}</div>
+    <div class="container">{{form.email(size=20)}}</div>
+
+    <div class="container">{{form.hobbies.label}}</div>
+    <div class="container">{{form.hobbies(size=20)}}</div>
+
+    <div class="container">{{form.country.label}}</div>
+    <div class="container">{{form.country(size=20)}}</div>
+
+    <div class="container">{{form.about.label}}</div>
+    <div class="container">{{form.about(size=20)}}</div>
+
+    <button type="submit" class="select btn btn-primary btn-lg">update profile</button>
+</form>
+{% endblock %}

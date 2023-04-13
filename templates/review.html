@@ -1,0 +1,23 @@
+{%  extends 'header.html' %}
+{% block content %}
+
+<form class="mx-auto" method="post">
+{{ form.csrf_token }}
+
+    <div class="container">
+        {{form.rating.label}}
+        {{form.rating(size=20)}}
+    </div>
+    <div class="container">
+        {{form.review.label}}
+        {{form.review}}
+    </div>
+    <div class="container">
+        {{form.update_image.label}}
+        {{form.update_image}}
+    </div>
+    <button type="submit" class="select btn btn-primary btn-lg">Review</button>
+</form>
+
+
+{% endblock %}

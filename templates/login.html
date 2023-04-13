@@ -1,0 +1,15 @@
+{%  extends 'header.html' %}
+{% block content %}
+
+
+<form class="mx-auto" action="{{url_for('login')}}" method="post">
+    {{form.csrf_token}}
+    <div class="container">{{form.username.label}}</div>
+    <div class="container">{{form.username(size=20)}}</div>
+    <div class="container">{{form.password.label}}</div>
+    <div class="container">{{form.password(size=10)}}</div>
+    <button type="submit" class="select btn btn-primary btn-lg">Login</button>
+</form>
+
+
+{% endblock %}

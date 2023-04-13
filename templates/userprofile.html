@@ -1,0 +1,152 @@
+{% extends "header.html" %}
+{% block content %}
+
+<body class="is-preload">
+<!-- Header -->
+	<section id="header">
+		<header>
+			Hi {{ current_user.username.title() }}!
+			<a href="{{url_for('account_profile_update', id=current_user.id)}}" class="select btn btn-primary btn-md" role="button" aria-disabled="true">update</a>
+			<a href="/logout" class="select btn btn-primary btn-md" role="button" aria-disabled="true">Logout</a>
+			<a href="/gorhgo3-profile" class="image avatar"><img src="/static/images/avatar.jpg/"></a>
+<!--					<h1 id="logo"><a href="#">Login</a></h1>-->
+<!--					<p>get started now<br></p>-->
+		</header>
+		<nav id="nav">
+			<ul>
+				<li><a href="#one" class="active">About</a></li>
+				<li><a href="#two">Your Bookshelf</a></li>
+				<div class="useroptions row">
+					<a href="/wishlist" class="col-6 select btn btn-primary btn-sm" role="button" aria-disabled="true">Wishlist</a>
+					<a href="/to_read" class="col-6 select btn btn-primary btn-sm" role="button" aria-disabled="true">Future reads</a>
+					<a href="/add" class="col-6 select btn btn-primary btn-sm" role="button" aria-disabled="true">Library</a>
+					<a href="#" class="col-6 select btn btn-primary btn-sm" role="button" aria-disabled="true">Favorites</a>
+				</div>
+				<li><a href="#three">Wishlist</a></li>
+				<li><a href="#four">Contact</a></li>
+			</ul>
+		</nav>
+		<footer>
+			<ul class="icons">
+				<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+				<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+				<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+				<li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
+				<li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+			</ul>
+		</footer>
+	</section>
+<!-- Wrapper -->
+	<div id="wrapper">
+		<!-- Main -->
+			<div id="main">
+				<!-- One -->
+					<section id="one">
+						<div class="image main" data-position="center">
+							<img src="https://images.unsplash.com/photo-1548048026-5a1a941d93d3?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1470&amp;q=80" alt="">
+						</div>
+						<div class="container">
+							<header class="major">
+								<h2>{{current_user.username}}'s story..</h2>
+								<p>{{ current_user.about }}</p>
+								<p>{{ current_user.hobbies }}</p>
+								<a>Tell us more about you..</a>
+							</header>
+						</div>
+					</section>
+				<!-- Two -->
+					<section id="two">
+						<div class="container">
+						{% if review %}
+							<header class="major mb-5">
+								<h2>{{current_user.username.title()}}'s Bookshelf</h2>
+							</header>
+<!--							need to make this div fit content following the image of the reviewed -->
+							<div id='disfav' class="row">
+								<img src="{{review.book_parent.Image_URL}}" alt="/static/images/pic01.jpg" class="col-4">
+								<div class="rtext col-8">
+									<h2>{{ review.rating }}/10</h2>
+									<h4>Gorghoe:</h4>
+									<p>{{review.review}}</p>
+								</div>
+							</div>
+						{% endif %}
+						</div>
+						<div class="container">
+							<h3>Your Library</h3>
+							<p>A full account of your library, looking good!</p>
+							<div id="" class="features row">
+								{% for book in current_user.read_books %}
+								<div class="col-2 flip-card">
+								  <div class="flip-card-inner">
+									<div class="flip-card-front">
+										{% if book.book_parent.Image_URL %}
+										<img src="{{book.book_parent.Image_URL}}" alt="/static/images/pic01.jpg">
+										{% endif %}
+									</div>
+									<div class="flip-card-back">
+										{{book.book_parent.title}}<br>
+										{{book.book_parent.author}}<br>
+										{{book.book_parent.date}}<br>
+										<a href="{{url_for('review', bookid=book.id)}}">review</a><br>
+										<a href="{{url_for('delete', obj=book.id)}}">delete</a>
+									</div>
+								  </div>
+								</div>
+								{% endfor %}
+
+							</div>
+						</div>
+					</section>
+				<!-- Three -->
+					<section id="three">
+					<div class="container">
+						<h3>Want to help {{current_user.username}} get more ink?</h3>
+						<p>We know having the perfect bookshelf comes at an expense. Join a community of reviewers and help each other contribute!</p>
+						wishlists
+						{% if wishbook %}
+							<h3>{{current_user.username}}'s wishlist</h3>
+<!--							need to make this div fit content following the image of the reviewed -->
+							<div class="row">
+								<div class="col-8">
+									<p>{{wishbook.title}}</p>
+									amazon sale stamp
+								</div>
+								<img src="{{wishbook.Image_URL}}" alt="/static/images/pic01.jpg" class="col-4">
+							</div>
+						{% endif %}
+					</div>
+				</section>
+				<!-- Four -->
+					<section id="four">
+					<div class="container">
+						<h3>Trending books in your location</h3>
+						<p>See a book you like? Add to your wishlist or future reads</p>
+						<ul class="feature-icons">
+							<li class="icon solid fa-code">Favorites</li>
+							<li class="icon solid fa-cubes">Future reads</li>
+							<li class="icon solid fa-book">Wishlist</li>
+							<li class="icon solid fa-coffee">Your bookshelf</li>
+						</ul>
+					</div>
+				</section>
+		</div>
+		<!-- Footer -->
+			<section id="footer">
+				<div class="container">
+					<ul class="copyright">
+						<li>© Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</div>
+			</section>
+	</div>
+<!-- Scripts -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery.scrollex.min.js"></script>
+	<script src="assets/js/jquery.scrolly.min.js"></script>
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+</html>
+{% endblock %}

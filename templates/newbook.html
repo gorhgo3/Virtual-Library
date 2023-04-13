@@ -1,0 +1,23 @@
+{%  extends 'header.html' %}
+{% block content %}
+
+
+<form class="mx-auto" action="{{url_for('new_book')}}" method="post">
+    {{ form.csrf_token }}
+    <div class="container">{{form.ISBN.label}}</div>
+    <div class="container">{{form.ISBN(size=20)}}</div>
+    <div class="container">{{form.title.label}}</div>
+    <div class="container">{{form.title(size=10)}}</div>
+    <div class="container">{{form.author.label}}</div>
+    <div class="container">{{form.author(size=20)}}</div>
+    <div class="container">{{form.date.label}}</div>
+    <div class="container">{{form.date(size=10)}}</div>
+    <div class="container">{{form.publisher.label}}</div>
+    <div class="container">{{form.publisher(size=10)}}</div>
+    <div class="container">{{form.Image_URL.label}}</div>
+    <div class="container">{{form.Image_URL(size=10)}}</div>
+    <button type="submit" class="select btn btn-primary btn-lg">add book</button>
+</form>
+
+
+{% endblock %}
