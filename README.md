@@ -1,5 +1,7 @@
 # Python Flask Book Entry Application
 
+## ServerSide rendering with Python and Flask
+
 ## Overview
 This application serves as a platform for managing and creating book entries. It uses Flask as the web framework and SQL for database management. The application features WTF forms for data validation and Flask-Login for user authentication and management.
 
